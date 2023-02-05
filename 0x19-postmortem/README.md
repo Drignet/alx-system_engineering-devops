@@ -1,18 +1,25 @@
-<img src=./image.png width=50%>
+#Title: Post-Mortem Report: Heng Technology Website Outage on 20th of July 2019
 
-# BooktifuL requests failure report
-Last week, it was reported that the BooktifuL platform was returning 500 Error on all requests made on the platform routes, all the services were down.  90% of the users were affected. The root cause was the failure of our master server web-01.
+Summary: On 20th of July 2019, the Heng Technology website experienced an unexpected outage that lasted for [duration]. The root cause of the issue was traced to a configuration error in the web server, which caused the server to crash and become unresponsive. The issue was resolved by the IT team after 1hr:33min of downtime.
 
-## Timeline
-The error was realized on Saturday 26th February 1200 hours (East Africa Time) when our Site Reliability Engineer, Mr Elie saw the master server lagging in speed. Our engineers on call disconnected the master server web-01 for further system analysis and channelled all requests to client server web-02. They soled problem by Sunday 27th Febraury 2200 hours (East Africa Time).
+##Timeline:
 
-## Root cause and resolution
-The BooktifuL platform is served by 2 ubuntu cloud servers. The master server web-01 was connected to serve all requests, and it stopped functioning due to memory outage as a results of so many requests because during a previous test, the client server web-02 was disconnected temporarily for testing and was not connected to the load balancer afterwards. 
+    01:27:00: Website users start to report issues accessing the Heng Technology site.
+    01:30:30: IT team is notified of the issue and begins investigation.
+    03:00:00: IT team determines that the web server is not responding.
 
+##Root Cause:
+The root cause of the issue was traced to a misconfiguration in the web server settings. During a routine update, a setting that controlled the maximum number of simultaneous connections was changed, causing the server to become overwhelmed and crash.
 
-The issue was fixed when the master server was temporarily disconnected for memory clean-up then connected back to the loadbalancer and round-robin algorithm was configured so that both the master and client servers can handle equal amount of requests.
+##Resolution:
+The IT team was able to quickly resolve the issue by restoring the previous configuration settings and restarting the web server. The site was back up and running within 1hr:33min.
 
-## Measures against such problem in future
-- Choose the best loadbalancing algorithm for your programs
-- Always keep an eye on your servers to ensure they are running properly
-- Have extra back-up servers to prevent your program fro completely going offline during an issue
+##Prevention:
+To prevent similar issues in the future, the IT team will implement the following measures:
+
+    Develop and implement a comprehensive configuration management plan to ensure that changes to the web server settings are thoroughly tested and approved before deployment.
+    Increase monitoring of the web server to detect and alert IT staff of any performance issues in a timely manner.
+    Establish a clear escalation process for addressing issues with the web server to ensure a quick resolution in the event of an outage.
+
+##Conclusion:
+The website outage on 20th of July 2019 was caused by a misconfiguration in the web server settings. The IT team was able to quickly resolve the issue and prevent a similar incident from happening in the future by implementing measures to improve configuration management, monitoring, and incident response.
